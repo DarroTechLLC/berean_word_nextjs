@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import DbConnectionStatusView from './DbConnectionStatusView';
 
-export default function DbConnectionStatus() {
+export default function DbConnectionStatusController() {
   const [status, setStatus] = useState<'loading' | 'connected' | 'error'>('loading');
   const [message, setMessage] = useState('Checking database connection...');
 
@@ -28,27 +29,6 @@ export default function DbConnectionStatus() {
     checkConnection();
   }, []);
 
-  return (
-    <div className={`db-status ${status}`}>
-      <p>{message}</p>
-      <style jsx>{`
-        .db-status {
-          padding: 10px;
-          border-radius: 5px;
-          margin: 10px 0;
-        }
-        .loading {
-          background-color: #f0f0f0;
-        }
-        .connected {
-          background-color: #d4edda;
-          color: #155724;
-        }
-        .error {
-          background-color: #f8d7da;
-          color: #721c24;
-        }
-      `}</style>
-    </div>
-  );
+  // Pass the state to the view component
+  return <DbConnectionStatusView status={status} message={message} />;
 }
