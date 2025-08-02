@@ -1,0 +1,4 @@
+-get successful db connection
+-implement routing
+-make models/prisma
+-create aiven account and email for free sql
